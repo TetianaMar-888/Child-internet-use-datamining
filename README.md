@@ -92,7 +92,7 @@ grouped by child accordingly — a `quarter` effect that appeared highly
 significant at window level (χ² = 66.9, p < 0.0001) vanished when tested on
 476 independent children (p = 0.178).
 
-![Correlation matrix](Child-internet-use-datamining/reports/correlation_matrix_tabular.png)
+![Correlation matrix](reports/correlation_matrix_tabular.png)
 
 ---
 
