@@ -240,5 +240,32 @@ tslearn             Module 3 — DTW clustering, shapelets
 sktime              Module 3 — ROCKET
 ```
 
-Notebooks read from and write to a Google Drive path set at the top of each
-file; adjust `DATA` and `REPORTS` to run elsewhere.
+## Running the notebooks
+
+Written for Google Colab, which provides most dependencies. The specialised
+libraries are installed inline where first used:
+
+```
+imbalanced-learn    Module 1 — resampling
+shap                Module 2 — explainability
+stumpy              Module 3 — matrix profile
+tslearn             Module 3 — DTW clustering, shapelets
+sktime              Module 3 — ROCKET
+```
+
+Each notebook begins by mounting Google Drive and setting two paths:
+
+```python
+DATA = '/content/drive/MyDrive/2_PROJECTS/DM2_25_26/data'
+REPORTS = '/content/drive/MyDrive/2_PROJECTS/DM2_25_26/reports'
+```
+
+These point to the author's own Drive and will not resolve elsewhere. To run
+the notebooks on another machine, place the dataset files in a directory of
+your choice and change both variables accordingly. `DATA` must contain
+`cmi_internet.csv`, `data_dictionary.csv` and `CMI_timeseries_dataset.pkl.gz`;
+`REPORTS` is the directory figures are written to and can be any writable path.
+
+Notebooks are intended to be run in order — Module 1 reproduces the Module 0
+corrections at the top rather than reading a saved intermediate file, so each
+is self-contained given the raw data.
