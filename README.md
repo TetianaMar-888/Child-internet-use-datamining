@@ -163,6 +163,13 @@ rather than a single split.
 
 ![Regression residuals](reports/regression_residuals.png)
 
+**Random Forest feature importance is remarkably flat**: the top feature
+accounts for 6.0% and the eighth for 4.0%, with only 2 of 32 features below 1%.
+For comparison, the DM1 project found three features accounting for 82% of
+total importance. There is no dominant predictor to find, which is precisely the
+regime where no algorithm can substantially outperform any other — as the
+five-way convergence on macro F1 between 0.278 and 0.350 demonstrates.
+
 **SHAP** revealed one substantial disagreement with the model's built-in
 importances. Self-reported daily screen time — conceptually the feature closest
 to the target — ranks third by SHAP and seventeenth by impurity importance,
@@ -188,11 +195,28 @@ Neither distinguishes the classes.
 
 ![Motif and discord](reports/motif_discord_example.png)
 
-**Clustering** separates the two effects directly. On raw windows, k=2 gives
-silhouette 0.2525; removing the activity level through z-normalisation collapses
-it to 0.0363. DTW recovers part of the shape-based structure (0.0848) by
-allowing the time axis to warp, but it remains three times weaker than the
-level-based structure. Adjusted Rand Index against the target is −0.026: the
+**Clustering** separates the two effects directly. Two algorithms were applied
+— K-Means and Ward agglomerative clustering — across three data
+representations:
+
+| Algorithm | Data | Silhouette | ARI vs target |
+|---|---|---|---|
+| Ward | raw (level + shape) | 0.3586 | −0.025 |
+| K-Means | raw (level + shape) | 0.2525 | −0.026 |
+| K-Means + DTW | z-normalised (shape only) | 0.0848 | 0.021 |
+| K-Means | z-normalised (shape only) | 0.0363 | — |
+
+Ward scores highest but the score is misleading: it isolates 124 windows with
+mean activity 0.0953 against 0.0500 for the rest, which looks like a distinct
+high-activity population until the ranges are checked — 366 of the 876
+low-cluster windows exceed the high cluster's minimum. Ward cut the upper tail
+off a continuum, and the high silhouette reflects the asymmetry of a small tight
+group against a large dispersed one.
+
+Removing the activity level through z-normalisation collapses the silhouette
+sevenfold. DTW recovers part of the shape-based structure by allowing the time
+axis to warp, but it remains three times weaker than level-based structure.
+Adjusted Rand Index against the target is near zero for both algorithms: the
 partition into active and inactive children is real, and it is not the partition
 into problematic and non-problematic.
 
