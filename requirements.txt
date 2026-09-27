@@ -1,0 +1,18 @@
+# Core
+numpy
+pandas
+scipy
+matplotlib
+seaborn
+scikit-learn
+
+# Imbalanced learning (Module 1)
+imbalanced-learn
+
+# Explainability (Module 2)
+shap
+
+# Time series (Module 3)
+stumpy
+tslearn
+sktime
