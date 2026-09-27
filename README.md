@@ -240,19 +240,6 @@ tslearn             Module 3 — DTW clustering, shapelets
 sktime              Module 3 — ROCKET
 ```
 
-## Running the notebooks
-
-Written for Google Colab, which provides most dependencies. The specialised
-libraries are installed inline where first used:
-
-```
-imbalanced-learn    Module 1 — resampling
-shap                Module 2 — explainability
-stumpy              Module 3 — matrix profile
-tslearn             Module 3 — DTW clustering, shapelets
-sktime              Module 3 — ROCKET
-```
-
 Each notebook begins by mounting Google Drive and setting two paths:
 
 ```python
