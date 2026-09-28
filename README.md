@@ -238,6 +238,55 @@ recur in both — the supervised method discriminates by magnitude, not by form.
 
 ---
 
+## Additional experiment — combining the two datasets
+
+The two datasets share a child identifier, which raises a question neither
+module addresses alone: does objectively measured physical activity add
+anything beyond what questionnaires and body measurements already capture?
+
+Eleven features were derived from the accelerometer signal — activity magnitude,
+posture stability as a sleep proxy, light exposure and wear compliance — all
+computed on worn time only and averaged to one row per child.
+
+**A threshold decision proved consequential.** Requiring only 20 worn steps per
+window produced 22 children with essentially zero recorded activity; all had a
+single window, non-wear fractions of 31–90%, and several had a Z-angle standard
+deviation below 0.1 — a device at a perfectly constant angle, which no worn
+sensor produces. Raising the requirement to half a window cut 451 children to
+370 but *strengthened* the signal, raising the strongest feature's correlation
+with the target from −0.206 to −0.246. The artefactual records had been diluting
+a real relationship.
+
+| Feature set | Features | ROC-AUC | Macro F1 |
+|---|---|---|---|
+| Tabular only | 32 | 0.775 ± 0.044 | **0.705 ± 0.044** |
+| Time-series only | 11 | 0.644 ± 0.062 | 0.623 ± 0.061 |
+| Tabular + time-series | 43 | **0.778 ± 0.054** | 0.680 ± 0.047 |
+
+**Fusion changes nothing** — AUC rises 0.003, an eighth of one standard
+deviation, and macro F1 falls.
+
+The reason is that the accelerometer is substantially measuring age. Every
+activity feature correlates more strongly with `Basic_Demos-Age` (up to −0.445)
+than with the target, and controlling for age removes roughly 60% of each
+feature's association with it. Younger children move more than adolescents, and
+the model already knows a child's age from three of its four most important
+features.
+
+A residual 40% survives, so objective activity does carry a small independent
+contribution — too small to register on 370 children where the cross-validated
+standard deviation is 0.044.
+
+Two side findings are worth noting. Objective and self-reported activity barely
+agree (r = 0.194 between accelerometer movement and the children's activity
+questionnaire), making it more surprising that neither improves on the other.
+And five of eleven time-series features enter the combined model's top 15 by
+importance — the model demonstrably uses them while learning nothing new,
+a clean illustration that impurity importance indicates usefulness for
+splitting rather than added information.
+
+---
+
 ## Data
 
 The analysis uses the Child Mind Institute *Problematic Internet Use* dataset,
