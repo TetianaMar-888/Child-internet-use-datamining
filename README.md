@@ -275,6 +275,8 @@ feature's association with it. Younger children move more than adolescents, and
 the model already knows a child's age from three of its four most important
 features.
 
+![Age effect in accelerometer features](reports/feature_fusion_age_effect.png)
+
 A residual 40% survives, so objective activity does carry a small independent
 contribution — too small to register on 370 children where the cross-validated
 standard deviation is 0.044.
