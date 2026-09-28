@@ -331,4 +331,6 @@ your choice and change both variables accordingly. `DATA` must contain
 
 Notebooks are intended to be run in order — Module 1 reproduces the Module 0
 corrections at the top rather than reading a saved intermediate file, so each
-is self-contained given the raw data.
+is self-contained given the raw data. The feature-fusion notebook is
+independent of Modules 1–3 and reproduces the corrections itself; it requires
+both the tabular and time-series files.
