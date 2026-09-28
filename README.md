@@ -33,7 +33,9 @@ with none exceeding 6%.
 **In the accelerometer data the signal is activity level, not activity
 pattern.** Mean activity alone achieves ROC-AUC 0.621; motif analysis,
 shape-based clustering, DTW, shapelets and ROCKET add nothing beyond it. Only
-Euclidean KNN exceeds the single-number baseline, and by 0.023 AUC.
+Euclidean KNN exceeds the single-number baseline, and by 0.023 AUC. Merging the
+accelerometer features into the tabular model does not help either — the sensor
+is substantially measuring age, which the model already knows.
 
 **Data quality problems changed the results rather than merely tidying them.**
 A decimal-point entry error in the clinical functioning scale, physiologically
