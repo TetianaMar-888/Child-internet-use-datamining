@@ -51,7 +51,8 @@ notebooks/
 ├── DM2_00b_data_understanding_timeseries.ipynb  Module 0 — accelerometer data
 ├── DM2_01_preprocessing.ipynb                   Module 1 — outliers, imbalance
 ├── DM2_02_advanced_ml_xai.ipynb                 Module 2 — classification, regression, SHAP
-└── DM2_03_time_series.ipynb                     Module 3 — motifs, clustering, classification
+├── DM2_03_time_series.ipynb                     Module 3 — motifs, clustering, classification
+└── DM2_04_feature_fusion.ipynb                  Additional — combining both datasets
 
 reports/                                          Figures referenced in the report
 ```
